@@ -1,0 +1,212 @@
+{% extends "Manage/base.html" %}
+{%load static%}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'Manage/CSS/index.css' %}">
+{% endblock head %}
+
+
+
+{%block content_index%}
+<!-- BANNER  -->
+<section class="banner container-fluid section">
+	<div class="banner__row row">
+	   
+		<div class="col-5 ba__col5">
+			<div class="container ba__text">
+				<h3 class="animate__animated animate__fadeInDown">FOF - HỆ SINH THÁI NÔNG NGHIỆP HIỆN ĐẠI</h3>
+				<p class="animate__animated animate__fadeInUp">Đáp ứng các nhu cầu cần thiết của nông dân. Là người bạn tin cậy đem lại nguồn thị trường rộng mở. Cầu nối giữa nông dân và thương lái.</p>
+				<div class="banner__sub row animate__animated animate__fadeInUp">
+					<div class="col-4 sub__col">
+						<span><i class="fa fa-paper-plane"></i>&nbsp; Kiến thức</span>
+					</div>
+					<div class="col-4 sub__col">
+						<span><i class="fa fa-paper-plane"></i>&nbsp; Kinh nghiệm</span>
+					</div>
+					<div class="col-4 sub__col">
+						<span><i class="fa fa-paper-plane"></i>&nbsp; Trải nghiệm</span>
+					</div>
+				</div>
+
+				<div class="banner__item d-flex">
+					<div class="banner__get">
+						<p>Get Started</p>
+					</div>
+					<div class="banner__get">
+						<p>Manage Now!</p>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	  
+			<div class="col-7 ba__col7 bg">
+				<div class="overplay"></div>
+			</div>
+	   
+	</div>
+</section>
+
+<!-- NUMBER  -->
+<section class="number container section">
+	<h3>NHỮNG CON SỐ ẤN TƯỢNG</h3>
+	<div class="num__row row">
+		<div class="col-lg-4 num__col4 col-12">
+			<div class="row sub__row">
+				<div class="col-3 sub__col3">
+					<i class="fa fa-plane-departure"></i>
+				</div>
+				<div class="col-9 sub__col9">
+					<h3>10000+</h3>
+					<p>Lượt sử dụng trang web để quản lý nông sản.</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4 num__col4 col-12">
+			<div class="row sub__row">
+				<div class="col-3 sub__col3">
+					<i class="fa fa-plane-departure"></i>
+				</div>
+				<div class="col-9 sub__col9">
+					<h3>24M+</h3>
+					<p>Lượt xác nhận đặt hàng giữa thương lái và nông dân</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4 num__col4 col-12">
+			<div class="row sub__row">
+				<div class="col-3 sub__col3">
+					<i class="fa fa-plane-departure"></i>
+				</div>
+				<div class="col-9 sub__col9">
+					<h3>100+</h3>
+					<p>Nguồn cung cấp nguyên vật liệu với mức giá rẻ nhất.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+<!-- OFFER  -->
+<section class="offer container section">
+	<div class="offer__text">
+		<h3>DỊCH VỤ</h3>
+		<p>Chúng tôi cung cấp đến người nông dân cũng như thương lái một môi trường tuyệt vời nhất để đáp ứng nhu cầu của bạn.</p>
+	</div>
+
+	<div class="offer__content">
+		<div class="offer__row row">
+			<div class="col-7 of__col7">
+				<i class="fa fa-place-of-worship"></i>
+				<h3>Quản lý Nông sản</h3>
+				<p>Quản lý nguồn nông sản hiệu quả. Cung cấp cái nhìn tổng thể về doanh thu và năng suất cây trồng. Đồng thời, áp dụng công nghệ vào trong trồng trọt và thương mại.</p>
+
+				<button class="my-btn">Learn More</button>
+			</div>
+			<div class="col-5 of__col5">
+				<img class="img-fluid" src="{% static 'Manage/IMG/img4.jpg' %}" alt="">
+			</div>
+		</div>
+		<div class="offer__row row">
+			<div class="col-5 of__col5">
+				<img class="img-fluid" src="{% static 'Manage/IMG/feedback.jpg' %}" alt="">
+			</div>
+			<div class="col-7 of__col7">
+				<i class="fa fa-place-of-worship"></i>
+				<h3>Thị trường tiêu thụ</h3>
+				<p>Trở thành 1 FOF-er, bạn có cơ hội tiếp cận với hơn 100+ từ các thương lái đã kí kết với chúng tôi. Chúng tôi luôn tìm kiếm cho bạn đầu ra phù hợp với nhu cầu và niềm tin của bạn.</p>
+
+				<button class="my-btn">Learn More</button>
+			</div>
+			
+		</div>
+		<div class="offer__row row">
+			<div class="col-7 of__col7">
+				<i class="fa fa-place-of-worship"></i>
+				<h3>Lorem ipsum dolor sit</h3>
+				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat vitae tenetur est, totam nulla culpa. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores commodi quae sed placeat modi cumque porro, omnis iusto eos pariatur?</p>
+
+				<button class="my-btn">Learn More</button>
+			</div>
+			<div class="col-5 of__col5">
+				<img class="img-fluid" src="{% static 'Manage/IMG/slide1.jpg'%}" alt="">
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- CUSTOMER  -->
+<section class="customer section container">
+	<div class="offer__text">
+		<h3>Lorem ipsum dolor sit</h3>
+		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error incidunt consequatur tenetur deleniti quod asperiores?</p>
+	</div>
+	<div class="cus__row row">
+		<div class="cus_col3 col-lg-3 col-6">
+			<div class="card" style="width: 18rem;">
+				<img src="{% static 'Manage/IMG/feedback1.jpg'%}" class="card-img-top" alt="...">
+				<div class="card-body">
+				  <h5 class="card-title">Card title</h5>
+				  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				  <button class="my-btn">See More!</button>
+				</div>
+			  </div>
+		</div>
+		<div class="col-lg-3 col-6 cus_col3">
+			<div class="card" style="width: 18rem;">
+				<img src="{% static 'Manage/IMG/feedback1.jpg'%}" class="card-img-top" alt="...">
+				<div class="card-body">
+				  <h5 class="card-title">Card title</h5>
+				  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				  <button class="my-btn">See More!</button>
+				</div>
+			  </div>
+		</div>
+		<div class="col-lg-3 col-6 cus_col3">
+			<div class="card" style="width: 18rem;">
+				<img src="{% static 'Manage/IMG/feedback1.jpg'%}" class="card-img-top" alt="...">
+				<div class="card-body">
+				  <h5 class="card-title">Card title</h5>
+				  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				  <button class="my-btn">See More!</button>
+				</div>
+			  </div>
+		</div>
+		<div class="col-lg-3 col-6 cus_col3">
+			<div class="card" style="width: 18rem;">
+				<img src="{% static 'Manage/IMG/feedback1.jpg'%}" class="card-img-top" alt="...">
+				<div class="card-body">
+				  <h5 class="card-title">Card title</h5>
+				  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				  <button class="my-btn">See More!</button>
+				</div>
+			  </div>
+		</div>
+	</div>
+</section>
+
+
+<!-- REGISTER  -->
+<section class="feedback container-fluid section">
+	
+	
+	<div class="row feed__row">
+		<div class="col-6 fe__col6__1 ">
+			<h3>TRỞ THÀNH MẢNH GHÉP CỦA HỆ THỐNG FOF</h3>
+			<p>Hãy đăng ký ngay tài khoản của bạn với chúng tôi để nhận được những thông báo cũng như những dịch vụ
+				tuyệt vời nhất từ chúng tôi.</p>
+			<div class="feed__form">
+				<form action="">
+					<input type="email" placeholder="Nhập địa chỉ email">
+					<button class="my-btn my-3">Đăng ký</button>
+				</form>
+			</div>
+		</div>
+		<div class="col-6 fe__col6 bg">
+			<div class="overplay"></div>
+		</div>
+	</div>
+</section>
+{%endblock content_index%}

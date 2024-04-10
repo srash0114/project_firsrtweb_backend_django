@@ -1,0 +1,110 @@
+{% extends "Manage/base.html" %}
+{%load static%}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'Manage/CSS/manage.css' %}">
+{% endblock head %}
+
+
+{% block content %}
+
+{% if season %}
+<section class="section container">
+  <div class="row">
+    <div class="col manage__overall">
+
+      <button class="my-btn" style="width: 50px;" type="button" data-bs-toggle="offcanvas"
+              data-bs-target="#season__man" aria-controls="offcanvasExample">
+        <i class="fa fa-bars"></i>
+      </button>
+
+      <div class="offcanvas offcanvas-start season" tabindex="-1" id="season__man"
+           aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header season__header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">MÙA VỤ GIEO TRỒNG</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <div class="off__text">
+            Chứa tất cả những thông tin về tất cả các mùa vụ đã gieo trồng.
+          </div>
+          <div class="dropdown mt-3">
+            {% for item in season %}
+              <button class="my-btn modify season-button" data-season-id="{{ item.id }}" onclick="ClickSeason(event); ClickLand(event)">
+                {{ item.season_name }}
+              </button>
+            {% endfor %}
+
+            <button class="click" style="margin-top: 2rem;" id="click1" onclick="location.href='{% url 'create' %}'">
+              THÊM VỤ MÙA
+            </button>
+            <button class="click" onclick="location.href='{% url 'land' %}'">
+              THÊM ĐẤT ĐAI
+            </button>
+            <button class="click" onclick="location.href='{% url 'plant' %}'">
+              THÊM CÂY TRỒNG
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-11">
+      <div id="season-info" class="season__info">
+        <p>Tên mùa vụ: <span class="season_name"></span></p>
+        {% comment %} <p>Thời gian bắt đầu: <span class="season-start-time"></span></p>
+        <p>Thời gian kết thúc: <span class="season-end-time"></span></p> {% endcomment %}
+        <p>Lợi nhuận: <span class="season-profit"></span> USD</p>
+      </div>
+      <div class="row manage__land" id="land-container"> 
+        {% comment %} hahah {% endcomment %}
+      </div>
+      <div class="land__row row my-3">
+        <div class="map col-7">
+        
+        </div>
+        <div class="land__overall col-5">
+          <h3>DIỆN TÍCH: <span id="dientich"></span> ha</h3>
+          <h3>NỒNG ĐỘ</h3>
+
+          <div class="land__nd">
+            <p>Độ pH</p>
+            <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="25"
+              aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar" style="width: 0%; background-color: #60996643;" id="pH"></div>
+            </div>
+          </div>
+          <div class="land__nd">
+            <p>Độ ẩm</p>
+            <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="25"
+              aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar" style="width: 0%; background-color: #60996643" id="doam"></div>
+            </div>
+          </div>
+     
+   
+
+    </div>
+
+    <div class="plant" id="plant">
+      {% comment %}  {% endcomment %}
+    </div> 
+
+  
+  </div>
+</section>
+{% else %}
+  <section class="manage section container" id="hide">
+    <div class="notify">
+      <p>VUI LÒNG TẠO 1 MÙA VỤ MỚI ĐỂ TIẾN HÀNH THEO DÕI!</p>
+      <form action="{% url 'create' %}">
+        <button class="my-btn">THÊM MỚI</button>
+      </form>
+    </div>
+  </section>
+{% endif %}
+
+{% endblock content %}
+
+{% block js_LP %}
+  <script src="{% static 'Manage/JS/manage.js'%}"></script>
+{% endblock js_LP %}

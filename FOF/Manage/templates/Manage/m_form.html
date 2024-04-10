@@ -1,0 +1,33 @@
+{% extends "Manage/base.html" %}
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'Manage/CSS/m_form.css' %}">
+{% endblock head %}
+
+{% block form %}
+
+<section class="manage section container">
+  <form action="" method="post">  
+    {% csrf_token %} 
+    <p>THÔNG TIN MÙA VỤ</p>
+    <label for="name">Nhập tên mùa vụ:</label>
+    <input type="text" name="name" id="name">
+
+    <label for="time_s">Thời gian bắt đầu: </label>
+    <input type="date" name="time_s" id="time_s">
+
+    <label for="time_e">Thời gian kết thúc: </label>
+    <input type="date" name="time_e" id="time_e">
+
+    <label for="num">Lợi nhuận mong muốn: </label>
+    <input type="number" name="num" id="num">
+
+    <button class="my-btn">
+      TẠO MÙA VỤ
+    </button>
+  </form>
+</section>
+
+
+{% endblock form %}

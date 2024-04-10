@@ -1,0 +1,63 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Friend of Farmer | Trang chủ</title>
+	<!-- TAG -->
+	<link rel="shortcut icon" type="image/png" href="./IMG/Logo.png" />
+
+	<!-- font google  -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+	<!-- font awesome  -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+		integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	
+  <!-- OWL CAROUSEL  -->
+  <link rel="stylesheet" href="{%static  'Manage/CSS/owl.carousel.min.css'%}">
+  <link rel="stylesheet" href="{%static 'Manage/CSS/owl.theme.default.min.css'%}">
+	<!-- css bootstrap  -->
+	<link rel="stylesheet" href="{%static 'Manage/CSS/bootstrap.min.css'%}">
+	<!-- MAIN CSS  -->
+	<link rel="stylesheet" href="{%static 'Manage/CSS/login.css'%}">
+
+</head>
+
+<body>
+    <button type="submit" class="block" onclick="location.href='{%url 'index'%}'">trang chủ</button>
+    <br/>
+    <p id="logo">Friend of Farmer</p>    
+        <div>
+            <form action="" method="POST">
+                {%csrf_token%}
+                <h2 style="color: 12372A;">ĐĂNG NHẬP</h2>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>hoặc sử dụng tài khoản của bạn</span>
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <input type="user" placeholder="user" name="user" required/>
+                <input type="password" placeholder="Mật khẩu" name="password" required/>
+                <a href="#">Quên mật khẩu?</a>
+                <button type="submit" class="block">Đăng nhập</button>
+                <br/>
+            </form>  
+        </div>
+    
+</body>
+
+</html>

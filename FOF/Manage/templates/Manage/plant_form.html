@@ -1,0 +1,54 @@
+{% extends "Manage/base.html" %} {% load static %} {% block head %}
+<link rel="stylesheet" href="{% static 'Manage/CSS/manage_input_lp.css' %}" />
+{% endblock head %} {% block content_lp %}
+
+{% block landform %}
+
+
+{%endblock%}
+<section class="manage section container">
+  <div class="land__form plant__form">
+    <form action="" method="post">  
+      {% csrf_token %}
+      <h2>THÔNG TIN CÂY TRỒNG</h2>
+
+      <label for="plant_name">Tên cây trồng</label>
+      <input type="text" name="plant_name" id="plant_name" placeholder="Lúa" />
+
+      <label for="plant_dev">Thời gian phát triển (tháng)</label>
+      <input type="number" name="plant_dev" id="plant_dev" placeholder="3" />
+
+      <label for="plant_type">Loại cây</label>
+      <select name="plant_type" id="plant_type" class = "id_mv">
+        <option value="0">Cây lương thực</option>
+        <option value="1">Cây ăn quả</option>
+        <option value="2">Cây rau củ</option>
+      </select>
+
+      <label for="plant_ND" style="display: block;">Nồng độ chất khoáng</label>
+      <input type="number" name="plant_ND" id="plant_ND" placeholder="500"/>
+
+      <label for="plant_bp">Chu kỳ bón phân</label>
+      <input type="number" name="plant_bp" id="plant_bp" step="0.01" placeholder="7.5"/>
+
+      <label for="land_id">Cây trồng trên đất: </label>
+      <select name="land_id" id="land_id"  class = "id_mv">
+        {% for item in land_list %}
+          <option value="{{ item.id }}">{{ item.land_name }}</option>
+        {% endfor %}
+      </select>
+
+      <button type="submit" class="my-btn modify">Lưu thông tin</button>  
+    </form>
+  </div>
+</section>
+
+
+
+
+
+
+
+  {% endblock content_lp %} {% block js_LP %}
+<script src="{% static 'Manage/JS/m_input_lp.js'%}"></script>
+{% endblock js_LP %}

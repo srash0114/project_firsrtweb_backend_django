@@ -1,0 +1,74 @@
+{% extends "Manage/base.html" %}
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'Manage/CSS/search.css' %}">
+{% endblock head %}
+
+{% block content %}
+   <!-- FINDING  -->
+   <section class="find container section" style="disp">
+      <div class="find__row row">
+         <div class="col-3 filter">
+            <span><i class="fa fa-filter"></i> &nbsp; Bộ lọc tìm kiếm</span>
+            <div class="filter__item">
+               <p>Nơi bán</p>
+               <form action="" method="POST"> <!-- Corrected method attribute -->
+                  {% csrf_token %}
+                  <input type="checkbox" name="adresss" id="name" value="0">
+                  <label for="name">TP Hồ Chí Minh</label>
+                  <br>
+                  <input type="checkbox" name="adresss" id="name" value="1">
+                  <label for="name">TP Hà Nội</label>
+                  <br>
+                  <input type="checkbox" name="adresss" id="name" value="2">
+                  <label for="name">TP Đà Nẵng</label>
+                  <br>
+                  <input type="text" name="" id="" placeholder="Nhập tên tỉnh/TP" class="my-input" value="">
+               </form>
+            </div>
+         </div>
+         <div class="col-9 find__content">
+            <div class="find__box">
+               <h3>TÌM KIẾM NGUYÊN VẬT LIỆU</h3>
+               <p>Giúp bạn tìm kiếm nguồn nguyên vật liệu nông nghiệp, hạt giống, phân bón với mức giá phải chăng!</p>
+
+               <form role="search" method="POST" action="{% url 'search' %}">
+                  {% csrf_token %}
+                  <input type="search" placeholder="Nhập sản phẩm muốn tìm kiếm" aria-label="search" class="my-input input-text" name="searched">
+                  <button class="my-btn" type="submit">TÌM KIẾM</button>
+               </form>
+
+                {% if keys %}
+                <h5>Kết quả tìm kiếm {{ searched }}</h5>
+                <div class="find__result d-flex justify-content-center row">
+                    {% for product in keys %}
+                            <div class="find__item col-3 my-2">
+                            <img class="img-fluid" src="{{ product.IMG_URL }}" alt="sanpham">
+                            <p class="name">{{ product.name }}</p>
+                            <p class="prices">{{ product.price }} VND</p>
+                            <div class="find__start">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <button class="my-btn" style="margin-top: 2rem;" id="click1" onclick="location.href='{{ product.link }}'" target="_blank" rel="noopener noreferrer">
+                                MUA NGAY
+                            </button>
+                            </div>
+                        
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p>Không tìm thấy kết quả phù hợp.</p>
+                {% endif %}
+
+            </div>
+            </div>
+            
+         </div>
+      </div>
+   </section>
+{% endblock content %}

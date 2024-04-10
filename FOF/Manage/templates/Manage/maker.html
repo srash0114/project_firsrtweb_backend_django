@@ -1,0 +1,222 @@
+{% extends "Manage/base.html"%}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{%static 'Manage/CSS/maker.css'%}"/>
+{% endblock head %}	
+{% block content %}
+	<!-- SEARCH BOX  -->
+	<section class="finding container section">
+		<div class="row find__row my-3">
+			<div class="col-8 f_col8">
+				<h3>TÌM KIẾM THỊ TRƯỜNG TIÊU THỤ NÔNG SẢN</h3>
+				<p>Hãy cho chúng tôi biết nông sản cùng với nơi bạn muốn bán nông sản. Chúng tôi sẽ tìm giúp bạn!</p>
+			</div>
+			<div class="col-4 f_col4">
+				<div class="farm__mode f_btn" >
+					<i class="fa fa-user-alt"></i>&nbsp; Farm Mode
+				</div>
+				<div class="seller__mode f_btn" onclick="location.href='{%url 'maker_sell'%}'">
+					<i class="fa fa-users"></i>&nbsp; Sell Mode
+				</div>
+			</div>
+		</div>
+
+		<div class="find__box">
+			<form action="">
+				<input type="text" name="" id="Nongsan" placeholder="Nông sản muốn bán">
+				<input type="text" name="" id="Thitruong" placeholder="Nơi muốn bán">
+
+				<button>Tìm kiếm</button>
+			</form>
+		</div>
+	</section>
+
+	<!-- RESULT  -->
+	<section class="result container section">
+		<div class="row my__row__header row__common">
+			<div class="col res__num common">
+				ID Market
+			</div>
+			<div class="col-2 res__name common">
+				Loại nông sản
+			</div>
+			<div class="col-2 res__place common">
+				Thị trường
+			</div>
+			<div class="col-2 res__suppli common">
+				Thương lái
+			</div>
+			<div class="col res__price common">
+				Giá cả (VNĐ/kg)
+			</div>
+			<div class="col-3 res__trend common">
+				Xu hướng giá
+			</div>
+			<div class="col res__check common">
+				Xác nhận
+			</div>
+
+		</div>
+		{%for thitruong in thitruong_list%}
+		<div class="row my__row__res row__common align-items-center">
+			
+			<div class="col res__num common">
+				<a href="./marker2.html"><span><i class="fa-regular fa-star"></i>&nbsp; {{thitruong.id_caytrong}}</span></a>
+				
+			</div>
+			<div class="col-2 res__name common">
+				{{thitruong.ten_caytrong}}
+			</div>
+			<div class="col-2 res__place common">
+				{{thitruong.ten_thitruong}}
+			</div>
+			<div class="col-2 res__suppli common">
+				{{thitruong.ten_nguoiban}}
+			</div>
+			<div class="col res__price common" style="color: #16c784;">
+				{{thitruong.gia}}
+			</div>
+			<div class="col-3 res__trend common">
+				<img src="./IMG/1.svg" alt="trend">
+			</div>
+			<div class="col res__check common">
+				Xác nhận
+			</div>
+			
+		</div>
+		{%endfor%}
+		<div class="row my__row__res row__common align-items-center">
+			<div class="col res__num common">
+				<a href="./marker2.html"><span><i class="fa-regular fa-star"></i>&nbsp; ST125</span></a>
+				
+			</div>
+			<div class="col-2 res__name common">
+				Gạo
+			</div>
+			<div class="col-2 res__place common">
+				TP Hồ Chí Minh
+			</div>
+			<div class="col-2 res__suppli common">
+				Nguyễn Văn An
+			</div>
+			<div class="col res__price common" style="color: #16c784;">
+				24000
+			</div>
+			<div class="col-3 res__trend common">
+				<img src="./IMG/1.svg" alt="trend">
+			</div>
+			<div class="col res__check common">
+				Xác nhận
+			</div>
+
+		</div>
+
+		<div class="row my__row__res row__common align-items-center">
+			<div class="col res__num common">
+				<span><i class="fa-regular fa-star"></i>&nbsp; ST125</span>
+			</div>
+			<div class="col-2 res__name common">
+				Gạo
+			</div>
+			<div class="col-2 res__place common">
+				TP Hồ Chí Minh
+			</div>
+			<div class="col-2 res__suppli common">
+				Nguyễn Văn An
+			</div>
+			<div class="col res__price common" style="color: #16c784;">
+				24000
+			</div>
+			<div class="col-3 res__trend common">
+				<img src="./IMG/825.svg" alt="trend" style="filter: hue-rotate(85deg) saturate(80%) brightness(0.85);">
+			</div>
+			<div class="col res__check common">
+				Xác nhận
+			</div>
+
+		</div>
+		<div class="row my__row__res row__common align-items-center">
+			<div class="col res__num common">
+				<span><i class="fa-regular fa-star"></i>&nbsp; ST125</span>
+			</div>
+			<div class="col-2 res__name common">
+				Gạo
+			</div>
+			<div class="col-2 res__place common">
+				TP Hồ Chí Minh
+			</div>
+			<div class="col-2 res__suppli common">
+				Nguyễn Văn An
+			</div>
+			<div class="col res__price common" style="color: #16c784;">
+				24000
+			</div>
+			<div class="col-3 res__trend common">
+				<img src="./IMG/1.svg" alt="trend">
+			</div>
+			<div class="col res__check common">
+				Xác nhận
+			</div>
+
+		</div>
+		<div class="row my__row__res row__common align-items-center">
+			<div class="col res__num common">
+				<span><i class="fa-regular fa-star"></i>&nbsp; ST125</span>
+			</div>
+			<div class="col-2 res__name common">
+				Gạo
+			</div>
+			<div class="col-2 res__place common">
+				TP Hồ Chí Minh
+			</div>
+			<div class="col-2 res__suppli common">
+				Nguyễn Văn An
+			</div>
+			<div class="col res__price common" style="color: #16c784;">
+				24000
+			</div>
+			<div class="col-3 res__trend common">
+				<img src="./IMG/1.svg" alt="trend">
+			</div>
+			<div class="col res__check common">
+				Xác nhận
+			</div> 
+
+		</div>
+
+	</section>
+
+	<!-- REGISTER  -->
+	<section class="feedback container-fluid section">
+		
+		
+			<div class="row feed__row">
+				<div class="col-6 fe__col6__1 ">
+					<h3>TRỞ THÀNH MẢNH GHÉP CỦA HỆ THỐNG FOF</h3>
+					<p>Hãy đăng ký ngay tài khoản của bạn với chúng tôi để nhận được những thông báo cũng như những dịch vụ
+						tuyệt vời nhất từ chúng tôi.</p>
+					<div class="feed__form">
+						<form action="">
+							<input type="email" placeholder="Nhập địa chỉ email">
+							<button class="my-btn my-3">Đăng ký</button>
+						</form>
+					</div>
+				</div>
+				<div class="col-6 fe__col6 bg">
+					<div class="overplay"></div>
+				</div>
+			</div>
+		
+		
+		
+	</section>
+	
+<script>
+	
+	document.getElementById('sell').onclick = function(){
+    window.location.href = "/maker/";
+	
+}
+
+</script>
+{% endblock content %}

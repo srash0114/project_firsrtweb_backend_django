@@ -1,0 +1,70 @@
+{% extends "Manage/base.html"%}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{%static 'Manage/CSS/maker_sell.css'%}"/>
+{% endblock head %}
+{% block content %}
+		<!-- SEARCH BOX  -->
+		<section class="finding container section">
+			<div class="row find__row my-3">
+				<div class="col-8 f_col8">
+					<h3>TÌM KIẾM THỊ TRƯỜNG TIÊU THỤ NÔNG SẢN</h3>
+					<p>Hãy cho chúng tôi biết nông sản cùng với nơi bạn muốn bán nông sản. Chúng tôi sẽ tìm giúp bạn!</p>
+					<p style="color:#609966; font-weight: bold; margin-top: 1rem;">Bạn đang ở chế độ thương lái</p>
+				</div>
+				<div class="col-4 f_col4" onclick="location.href='{%url 'maker'%}'">
+					<div class="seller__mode f_btn">
+						<p><i class="fa fa-user-alt"></i>&nbsp; Farm Mode</p>
+					</div>
+					<div class="farm__mode f_btn">
+						<p><i class="fa fa-users"></i>&nbsp;Sell Mode</p>
+					</div>
+				</div>
+			</div>
+	
+			<div class="find__box">
+				<form action="#" method="post"> <!-- Sửa action thành "#" -->
+					{% csrf_token %} <!-- Thêm token csrf -->
+					<input type="text" name="ten_caytrong" id="Nongsan" placeholder="Nông sản muốn mua">
+					<input type="number" name="gia" id="Thitruong" placeholder="Mức giá đề xuất">
+					<textarea name="mo_ta" id="" cols="30" rows="10" placeholder="Thông tin mô tả"></textarea>
+					<button type="submit">SUBMIT</button>
+				</form>
+			</div>		
+		</section>
+	
+		<!-- RESULT  -->
+		<section class="result container section">
+			<div class="result__box">
+				BẠN ĐÃ CẬP NHẬT THÀNH CÔNG
+			</div>
+	
+			
+	
+		</section>
+	
+		<!-- REGISTER  -->
+		<section class="feedback container-fluid section">
+			
+			
+				<div class="row feed__row">
+					<div class="col-6 fe__col6__1 ">
+						<h3>TRỞ THÀNH MẢNH GHÉP CỦA HỆ THỐNG FOF</h3>
+						<p>Hãy đăng ký ngay tài khoản của bạn với chúng tôi để nhận được những thông báo cũng như những dịch vụ
+							tuyệt vời nhất từ chúng tôi.</p>
+						<div class="feed__form">
+							<form action="">
+								<input type="email" placeholder="Nhập địa chỉ email">
+								<button class="my-btn my-3">Đăng ký</button>
+							</form>
+						</div>
+					</div>
+					<div class="col-6 fe__col6 bg">
+						<div class="overplay"></div>
+					</div>
+				</div>
+			
+			
+			
+		</section>
+{% endblock content %}

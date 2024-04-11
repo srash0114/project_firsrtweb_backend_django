@@ -1,6 +1,9 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from . import views
+from django.conf.urls.static import static
+from django.conf import settings
+
 
 urlpatterns = [
     path('', views.index, name="index"),
@@ -23,3 +26,5 @@ urlpatterns = [
     path('api/get-plant-by-land/<int:land_id>/', views.get_plant_by_land, name='get-plant-by-land'),
 
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

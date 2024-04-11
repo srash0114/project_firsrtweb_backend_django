@@ -54,16 +54,20 @@ def index(request):
 
 
 def search(request):
-    searched = ""  # Default value for searched
+    searched_name = ""  # Default value for searched
+    searched_adr = ""  # Default value for searched
     keys = []  # Default value for keys
+    keys1 = []
     if request.method == "POST":
-        searched = request.POST["searched"]
-        keys = Product.objects.filter(name__contains = searched)
-    return render(request, 'Manage/search.html', {"searched":searched , "keys":keys})
+        searched_name = request.POST["searched_name"]
+        searched_adr = request.POST["searched_adr"]
+        keys = Product.objects.filter(name__contains = searched_name)
+        keys1 = Product.objects.filter(adress__contains = searched_adr)
+    return render(request, 'Manage/search.html', {"searched_name":searched_name , "searched_adr":searched_adr, "keys":keys, "keys1":keys1})
 
 
 def manage(request):
-    return render(request, 'app/manage.html')
+    return render(request, 'Manage/manage.html')
 
 def get_season_info(request, season_id):
   """
@@ -284,7 +288,6 @@ def maker_sell(request):
 
 
 def contact(request):
-    if request.user.is_authenticated:
         if request.method == 'POST':  # Kiểm tra xem request là phương thức POST hay không
             # Lấy dữ liệu người dùng nhập từ form
             hoten = request.POST.get('hoten')
@@ -299,8 +302,7 @@ def contact(request):
         else:
             # Trả về trang contact.html khi request là GET
             return render(request, 'Manage/contact.html')
-    else:
-        return HttpResponse("Bạn cần phải đăng nhập để gửi phản hồi")
+    
     
 
 

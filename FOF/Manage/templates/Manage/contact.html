@@ -4,7 +4,8 @@
   <link rel="stylesheet" href="{% static 'Manage/CSS/contact.css' %}">
 {% endblock head %}
 {%block content_index%}
-<!-- contact -->	
+<!-- contact -->
+{%if user.is_authenticated%}	
 <section>
     <div class="contact">
         <div class="contact_container">
@@ -53,4 +54,7 @@
         </div>
     </div>
 </section>
+{%else%}
+<p>Vui lòng đăng nhập.</p>
+{%endif%}
 {%endblock content_index%}

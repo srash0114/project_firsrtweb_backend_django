@@ -29,12 +29,12 @@
             Chứa tất cả những thông tin về tất cả các mùa vụ đã gieo trồng.
           </div>
           <div class="dropdown mt-3">
+            {% if user.is_authenticated %}
             {% for item in season %}
               <button class="my-btn modify season-button" data-season-id="{{ item.id }}" onclick="ClickSeason(event); ClickLand(event)">
                 {{ item.season_name }}
               </button>
             {% endfor %}
-
             <button class="click" style="margin-top: 2rem;" id="click1" onclick="location.href='{% url 'create' %}'">
               THÊM VỤ MÙA
             </button>
@@ -44,6 +44,11 @@
             <button class="click" onclick="location.href='{% url 'plant' %}'">
               THÊM CÂY TRỒNG
             </button>
+            {%else%}
+            <div class="off__text">
+              Vui lòng đăng nhập.
+            </div>
+            {% endif %}
           </div>
         </div>
       </div>

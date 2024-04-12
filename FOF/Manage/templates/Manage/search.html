@@ -7,7 +7,7 @@
 
 {% block content %}
    <!-- FINDING  -->
-   <section class="find container section" style="disp; margin-left:10%">
+   <section class="find container section">
       <div class="find__row ">
          <div class="filter"> 
          </div>
@@ -18,20 +18,19 @@
 
                <form role="search" method="POST" action="{% url 'search' %}">
                   {% csrf_token %}
-                  <input type="search" placeholder="Nhập sản phẩm muốn tìm kiếm" aria-label="search" class="my-input input-text" name="searched_name">
-                  <input type="search" placeholder="Nhập địa chỉ muốn tìm kiếm" aria-label="search" class="my-input input-text" name="searched_adr">
+                  <input type="search" placeholder="Nhập sản phẩm muốn tìm kiếm" aria-label="search" class="my-input input-text" name="searched_name" style="uppercase;" oninput="this.value = this.value.toUpperCase()">
+                  <input type="search" placeholder="Nhập địa chỉ muốn tìm kiếm" aria-label="search" class="my-input input-text" name="searched_adr" style="uppercase;" oninput="this.value = this.value.toUpperCase()">
                   <button class="my-btn" type="submit">TÌM KIẾM</button>
                </form>
-
-                {% if keys %}
-                           <h5>Kết quả tìm kiếm {{ searched_name }}, {{ searched_adr }}</h5>
+                        
+                           <h5>SẢN PHẨM: {{ searched_name }} <br/>ĐỊA CHỈ: {{ searched_adr }}</h5>
                            <div class="find__result d-flex justify-content-center row">
                               {%  for product in keys %}
                                        {% if product in keys1%}
                                        <div class="find__item my-2 col-sm-3">
                                        <img class="img-fluid" src="{{ product.IMG_URL }}" alt="sanpham">
-                                       <p class="name">{{ product.name }}</p>
-                                       <p class="name">{{ product.adress }}</p>
+                                       <p class="name" style="text-transform: uppercase;">{{ product.name }}</p>
+                                       <p class="name" style="text-transform: uppercase;">{{ product.adress }}</p>
                                        <p class="prices">{{ product.price }} VND</p>
                                        <div class="find__start">
                                           <i class="fa fa-star"></i>
@@ -48,11 +47,7 @@
                                        {%endif%}    
                               {% endfor %}
                            </div>
-                           {%else%}
-                           <p>Không tìm thấy kết quả phù hợp.</p>
-                           {%endif%}
-      
-
+                           
             </div>
             </div>
             

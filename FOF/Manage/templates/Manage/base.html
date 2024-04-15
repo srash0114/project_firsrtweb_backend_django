@@ -33,14 +33,9 @@
       crossorigin="anonymous"
     />
     <!-- MAIN CSS  -->
-    
+    <link rel="stylesheet" href="{%static 'Manage/CSS/base.css'%}" />
     {% block head %}{% endblock head %}
     {% block head1 %}{% endblock head1 %}
-	<link rel="stylesheet" href="{%static 'Manage/CSS/base.css'%}" />
-	<!-- ChatBot  -->
-	<link rel="stylesheet" href="https://embed.pickaxeproject.com/axe/scripts/fab/styles.css">
-	<script src="https://embed.pickaxeproject.com/axe/scripts/fab/bundle.js"></script>
-	<div id="rendering-information" data-height="500px" data-width="300px" data-formid="FOFGPT_WQ7BX" data-frame-source="https://embed.pickaxeproject.com/axe?id=FOFGPT_WQ7BX&mode=embed_gold&host=beta&theme=light&opacity=100&font_header=Real+Head+Pro&size_header=12&font_body=Real+Head+Pro&size_body=12&font_labels=Real+Head+Pro&size_labels=12&font_button=Real+Head+Pro&size_button=12&c_fb=FFFFFF&c_ff=FFFFFF&c_fbd=888888&c_bb=228DD7&c_bt=FFFFFF&c_t=000000&s_ffo=100&s_bbo=100&s_f=minimalist&s_b=filled&s_t=2&s_to=1&s_r=2" data-title="FOFGPT">
   </head>
   <body>
     <!--HEADER-->
@@ -66,6 +61,7 @@
 				&nbsp;
 				<p>37 <sup>o</sup>C</p>
 			</div>
+
 			<div class="header__item">
 				<span>Biến động thị trường xuất khẩu </span>
 				&nbsp;
@@ -80,7 +76,7 @@
 			<div class="header__login">
 				{% if user.is_authenticated %}
 				<div style="display: flex;">
-					<form action="userin4" method="post" style="margin-left:8%">
+					<form action="userin4" style="margin-left:8%">
 						{% csrf_token %}
 						<button class="my-btn-header login" id="login" style="display: inline;" onmouseover="showFullUsername()" onmouseout="showShortenedUsername()">
 							{{ user.username | slice:":12" }}
@@ -110,6 +106,7 @@
 					<button type="submit" class="my-btn-header login" onclick="location.href='{%url 'signup'%}'" style="margin-left:5%">ĐĂNG KÝ</button>		
 				</div>			
 				{% endif %}
+				
 			</div>
 		</div>
 		
@@ -150,6 +147,10 @@
 
 							</div>
 						</div>
+
+
+
+
 					</ul>
 					<form class="d-flex" role="search">
 						<input class="form-control me-2" type="search" placeholder="Tìm kiếm" aria-label="Search">

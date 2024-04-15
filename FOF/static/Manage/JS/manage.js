@@ -9,18 +9,32 @@
     
 
     fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
+  .then((response) => response.json())
+  .then((data) => {
+    // Cập nhật nội dung HTML
+    const seasonInfoElement = document.querySelector("#season-info");
+    seasonInfoElement.querySelector(".season_name").textContent = data.season_name;
 
-        // Cập nhật nội dung HTML
-        const seasonInfoElement = document.querySelector("#season-info");
-        seasonInfoElement.querySelector(".season_name").textContent = data.season_name;
-        // seasonInfoElement.querySelector(".season-start-time").textContent = data.time_start;
-        // seasonInfoElement.querySelector(".season-end-time").textContent = data.time_end;
-        seasonInfoElement.querySelector(".season-profit").textContent = data.profit;
+    // Định dạng ngày bắt đầu
+    const startDate = new Date(data.start_time);
+    const formattedStartDate = formatDate(startDate);
+    seasonInfoElement.querySelector(".season-start-time").textContent = formattedStartDate;
 
+    // Định dạng ngày kết thúc
+    const endDate = new Date(data.end_time);
+    const formattedEndDate = formatDate(endDate);
+    seasonInfoElement.querySelector(".season-end-time").textContent = formattedEndDate;
 
-      });
+    seasonInfoElement.querySelector(".season-profit").textContent = data.profit;
+  });
+
+// Hàm định dạng ngày-tháng-năm
+function formatDate(date) {
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const year = date.getFullYear();
+  return `${day}-${month}-${year}`;
+}
   }
 
 
@@ -82,8 +96,16 @@
           // Add land status (assuming a "status" property is returned from the API)
           const landStatus = document.createElement("div");
           landStatus.classList.add("land__status");
-          landStatus.classList.add("green");
-          landStatus.textContent = "Normal";
+          if (landItem.ph === 6 | landItem.moisture === 50) {
+            landStatus.classList.add("green");
+            landStatus.textContent = "Normal";
+          }
+          else {
+            landStatus.classList.add("red");
+            landStatus.textContent = "Warning";
+          }
+          
+          
           
           landElement.appendChild(landStatus);
           landElement.addEventListener("click", function(event) {
@@ -106,7 +128,43 @@ function Earse(event){
   var p = document.getElementById('plant');
   p.innerHTML = ' ';
 }
+function calculateEndDate(startDate, timeDev) {
+  function parseDateString(dateString) {
+    var parts = dateString.split('-');
+    var day = parseInt(parts[0], 10);
+    var month = parseInt(parts[1], 10) - 1; // Trừ đi 1 vì tháng trong JavaScript tính từ 0 đến 11
+    var year = parseInt(parts[2], 10);
+    return new Date(year, month, day);
+  }
 
+  var seasonStartDate = parseDateString(startDate);
+  var endDate = new Date(seasonStartDate.getFullYear(), seasonStartDate.getMonth() + parseInt(timeDev), seasonStartDate.getDate());
+  
+  var day = String(endDate.getDate()).padStart(2, '0');
+  var month = String(endDate.getMonth() + 1).padStart(2, '0'); // Tháng trong JavaScript tính từ 0 đến 11
+  var year = endDate.getFullYear();
+
+  var timeCollectValue = day + '-' + month + '-' + year;
+  return timeCollectValue;
+}
+
+function calculateDaysLeft(endDateString) {
+  // Chuyển đổi chuỗi ngày kết thúc thành đối tượng Date
+  var day = parseInt(endDateString.substring(0, 2), 10);
+  var month = parseInt(endDateString.substring(3, 5), 10) - 1;
+  var year = parseInt(endDateString.substring(6, 10), 10);
+  var endDate = new Date(year, month, day);
+
+  var currentTime = new Date();
+  var timeDiff = endDate - currentTime;
+  var daysLeft = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+
+  return daysLeft;
+}
+
+// Ví dụ sử dụng hàm calculateDaysLeft với đầu vào là chuỗi "10042024"
+var daysLeft = calculateDaysLeft("10042024");
+console.log(daysLeft); // Kết quả được in ra trong Console
 function ClickLandShowPlant(event){
   // Lấy seasonId từ event.target hoặc các thuộc tính khác của sự kiện
   const landId = event.target.dataset.landId;
@@ -119,6 +177,7 @@ function ClickLandShowPlant(event){
     .then((response) => response.json())
     .then((plantData) => {
       
+
         var plantdiv = document.getElementById('plant');
         // Tạo phần tử h4 và gán nội dung
         var h4 = document.createElement('h4');
@@ -194,7 +253,7 @@ function ClickLandShowPlant(event){
         chuKyBonPhan.textContent = 'Chu kỳ bón phân: ' + item.bp + ' tháng';
 
         var nongDoKhoang = document.createElement('li');
-        nongDoKhoang.textContent = 'Nồng độ khoáng cần thiết: ' + item.nd;
+        nongDoKhoang.textContent = 'Chất khoáng cần thiết: ' + item.nd;
 
         // Gắn các phần tử li vào phần tử ul
         ul.appendChild(loaiCayTrong);
@@ -216,7 +275,8 @@ function ClickLandShowPlant(event){
 
         var col5 = document.createElement('div');
         col5.className = 'col-2 plant__time';
-        col5.textContent = '25 ngày';
+        let endTime = calculateEndDate(document.querySelector('.season__info .season-start-time').textContent, item.timeDev); 
+        col5.textContent = calculateDaysLeft(endTime) + ' ngày';
 
         // Gắn các phần tử con vào phần tử cha
         rowDiv.appendChild(col1);
@@ -231,7 +291,33 @@ function ClickLandShowPlant(event){
             
         }
        
+        document.getElementById('num_plant').innerHTML = cnt;
+       
+        
+        
+        function parseDateString(dateString) {
+          var parts = dateString.split('-');
+          var day = parseInt(parts[0], 10);
+          var month = parseInt(parts[1], 10) - 1; // Trừ đi 1 vì tháng trong JavaScript tính từ 0 đến 11
+          var year = parseInt(parts[2], 10);
+          return new Date(year, month, day);
+        }
+        
+        var timeCollect = document.getElementById('timeCollect');
+        var seasonStartDateString = document.querySelector('.season__info .season-start-time').textContent;
+        var timeDev = plantData[0].timeDev;
+        
+        
+        var timeCollectValue = calculateEndDate(seasonStartDateString, timeDev);
+        // Gán giá trị cho phần tử HTML
+        timeCollect.innerHTML = timeCollectValue;
+
+       
+
       
+      
+        // Gán giá trị cho phần tử HTML
+        document.getElementById('time_left').textContent = calculateDaysLeft(timeCollectValue) + " days left"
     });
   }
 }

@@ -19,11 +19,13 @@
                <form role="search" method="POST" action="{% url 'search' %}">
                   {% csrf_token %}
                   <input type="search" placeholder="Nhập sản phẩm muốn tìm kiếm" aria-label="search" class="my-input input-text" name="searched_name" style="uppercase;" oninput="this.value = this.value.toUpperCase()">
+                  <p>Sản Phẩm: {{ searched_name }}</p>
                   <input type="search" placeholder="Nhập địa chỉ muốn tìm kiếm" aria-label="search" class="my-input input-text" name="searched_adr" style="uppercase;" oninput="this.value = this.value.toUpperCase()">
                   <button class="my-btn" type="submit">TÌM KIẾM</button>
+                  <p>Địa Chỉ: {{ searched_adr }}</p>
                </form>
                         
-                           <h5>SẢN PHẨM: {{ searched_name }} <br/>ĐỊA CHỈ: {{ searched_adr }}</h5>
+                           
                            <div class="find__result d-flex justify-content-center row">
                               {%  for product in keys %}
                                        {% if product in keys1%}

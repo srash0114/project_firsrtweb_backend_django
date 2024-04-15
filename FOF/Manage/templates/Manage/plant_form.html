@@ -15,8 +15,8 @@
       <label for="plant_name">Tên cây trồng</label>
       <input type="text" name="plant_name" id="plant_name" placeholder="Lúa" />
 
-      <label for="plant_dev">Thời gian phát triển (tháng)</label>
-      <input type="number" name="plant_dev" id="plant_dev" placeholder="3" />
+      <label for="plant_dev">Thời gian phát triển</label>
+      <input type="number" name="plant_dev" id="plant_dev" placeholder="3 (tháng)" />
 
       <label for="plant_type">Loại cây</label>
       <select name="plant_type" id="plant_type" class = "id_mv">
@@ -25,8 +25,8 @@
         <option value="2">Cây rau củ</option>
       </select>
 
-      <label for="plant_ND" style="display: block;">Nồng độ chất khoáng</label>
-      <input type="number" name="plant_ND" id="plant_ND" placeholder="500"/>
+      <label for="plant_ND" style="display: block;">Chất khoáng cần thiết</label>
+      <input type="text" name="plant_ND" id="plant_ND" placeholder="Nito, Photpho, Kali"/>
 
       <label for="plant_bp">Chu kỳ bón phân</label>
       <input type="number" name="plant_bp" id="plant_bp" step="0.01" placeholder="7.5"/>
@@ -38,7 +38,7 @@
         {% endfor %}
       </select>
 
-      <button type="submit" class="my-btn modify">Lưu</button>  
+      <button type="submit" class="my-btn modify">Lưu thông tin</button>  
     </form>
   </div>
 </section>

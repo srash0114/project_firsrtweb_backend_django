@@ -6,6 +6,7 @@
 {%block content_index%}
 <!-- contact -->
 {%if user.is_authenticated%}	
+
 <section>
     <div class="contact">
         <div class="contact_container">
@@ -27,7 +28,7 @@
                         <div class="text">fof.nt208@googlegroups.com</div>
                     </div>  
                 </div>
-
+				
 				<div class="right-side">
 					<div class="topic">Phản hồi của bạn</div>
 					<div class="text">
@@ -35,17 +36,26 @@
 					</div>
 					<form action="#" method="post"> <!-- Sửa action thành "#" -->
 						{% csrf_token %} <!-- Thêm token csrf -->
+						</ul>
 						<div class="input-box">
-							<input type="text" name="hoten" placeholder="Nhập tên của bạn"> <!-- Thêm thuộc tính name -->
+							<input type="text" name="hoten" placeholder="Nhập tên của bạn" required> <!-- Thêm thuộc tính name -->
 						</div>
 						<div class="input-box">
-							<input type="email" name="email" placeholder="Nhập email của bạn"> <!-- Thêm thuộc tính name và sử dụng type="email" cho trường email -->
+							<input type="email" name="email" placeholder="Nhập email của bạn" required> <!-- Thêm thuộc tính name và sử dụng type="email" cho trường email -->
 						</div>
 						<div class="input-box message-box">
-							<textarea name="loinhan" placeholder="Lời nhắn"></textarea> <!-- Thêm thuộc tính name -->
+							<textarea name="loinhan" placeholder="Lời nhắn"></textarea required> <!-- Thêm thuộc tính name -->
 						</div>
 						<div class="button">
+							{% if messages %}
+						<ul class="messages">
+							{% for message in messages %}
+								<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+							{% endfor %}
+						</ul>
+						{% endif %}
 							<input type="submit" value="GỬI ĐI"> <!-- Thay type="button" thành type="submit" -->
+							
 						</div>
 					</form>
 				</div>

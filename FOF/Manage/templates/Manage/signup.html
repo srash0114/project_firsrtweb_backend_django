@@ -43,9 +43,16 @@
                     <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
                 <span>hoặc dùng email của bạn để đăng kí</span>
-                <input type="text" placeholder="Username" name="username" id="username" required/>
-                <input type="email" placeholder="Email" name="email" id="email" required/>
-                <input type="password" placeholder="Password" name="password" ed="password" required/>
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <input type="text" placeholder="Tài khoản" name="username" id="username" required/>
+                <input type="password" placeholder="Mật khẩu" name="password" id="email" required/>
+                <input type="password" placeholder="Nhập lại mật khẩu" name="confirm_password" ed="password" required/>
                 <button type="submit" class="my-4" style="padding-left:56px; padding-right:56px">ĐĂNG KÝ</button>
                 <br/>
             </form>

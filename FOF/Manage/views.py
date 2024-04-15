@@ -6,14 +6,37 @@ from .models import *
 from django.contrib import messages
 from django.http import JsonResponse
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
 
 
-
-def userin4(request):
-   if request.user.is_authenticated:
+# LOGIN SIGN UP 
+def userin4(request):  
+      if request.method=="POST":
+         user=request.user
+         name=request.POST.get('name')
+         birthday=request.POST.get('birth')
+         type_user=request.POST.get('type')
+         phonenum=request.POST.get('phone')
+         address=request.POST.get('adr')
+         email=request.POST.get('email')
+         try: 
+            custom = Customer.objects.get(user=user)
+            # Cập nhật thông tin cho khách hàng đã tồn tại
+            custom.name = name
+            custom.birthday = birthday
+            custom.type_user = type_user
+            custom.phonenum = phonenum
+            custom.address = address
+            custom.email = email
+            custom.save()
+            messages.success(request, "Thay đổi thông tin người dùng thành công")
+            return redirect('userin4')
+         except Customer.DoesNotExist:
+            custom = Customer.objects.create(user=user, name=name, birthday=birthday, type_user=type_user, phonenum=phonenum, address=address, email=email)
+            custom.save()
+            messages.success(request, "Nhập thông tin người dùng thành công")
+            return redirect('userin4')
       return render(request, 'Manage/userin4.html')
-   else:
-      return HttpResponse("Bạn cần phải đăng nhập để gửi phản hồi")
 
 def Logout_page(request):
    logout(request)
@@ -22,22 +45,26 @@ def Logout_page(request):
 def signup(request):
     if request.method == 'POST':
         uname = request.POST.get('username')
-        eml = request.POST.get('email')
         pw = request.POST.get('password')
+        pw1 = request.POST.get('confirm_password')  # Sửa thành confirm_password
+        if pw != pw1:
+            messages.error(request, 'Mật khẩu nhập lại không khớp.')
+            return redirect('signup')
         try:
-           user = User.objects.get(username=uname)
-           messages.error(request, 'Tài khoản đã tồn tại.')
-           return redirect('logins')
-        except:
-           data = User.objects.create_user(uname, eml, pw)
-           data.save()
-           messages.success(request, 'Tạo tài khoản thành công.')
-        return redirect('logins')
+            user = User.objects.get(username=uname)
+            messages.error(request, 'Tài khoản đã tồn tại.')
+            return redirect('logins')
+        except User.DoesNotExist:
+            data = User.objects.create_user(uname, password=pw)  # Sử dụng password=pw để tránh lỗi khi tạo tài khoản
+            data.save()
+            messages.success(request, 'Tạo tài khoản thành công.')
+            return redirect('logins')
     else:
         return render(request, 'Manage/signup.html', {})
+
     
 def logins(request):
-   if request.method == 'POST':
+   if request.method == 'POST'and request.POST:
       uname = request.POST.get('user')
       pw = request.POST.get('password')
       user = authenticate(request, username=uname, password=pw)
@@ -48,11 +75,12 @@ def logins(request):
          messages.error(request, 'Tài khoản hoặc mật khẩu không đúng.')
    return render(request, 'Manage/login.html', {})
 
+# INDEX 
 
 def index(request):
    return render(request, 'Manage/index.html')
 
-
+# RESOURCE 
 def search(request):
     searched_name = ""  # Default value for searched
     searched_adr = ""  # Default value for searched
@@ -65,9 +93,13 @@ def search(request):
         keys1 = Product.objects.filter(adress__contains = searched_adr)
     return render(request, 'Manage/search.html', {"searched_name":searched_name , "searched_adr":searched_adr, "keys":keys, "keys1":keys1})
 
-
+# MANAGE 
 def manage(request):
-    return render(request, 'Manage/manage.html')
+    season = Season.objects.all()
+    land = Land.objects.all()
+    plant = Plant.objects.all()
+    context = {'season': season, 'land':land, 'plant':plant}
+    return render(request, "Manage/manage.html", context)
 
 def get_season_info(request, season_id):
   """
@@ -182,8 +214,6 @@ def land_form(request):
 
     return render(request, "Manage/land_form.html", context)
 
-
-
 def plant_form(request):
     if request.method == 'POST':
         plant_name = request.POST['plant_name']
@@ -217,16 +247,6 @@ def plant_form(request):
 
     return render(request, "Manage/plant_form.html", context)
 
-
-
-
-def home(request):
-    season = Season.objects.all()
-    land = Land.objects.all()
-    plant = Plant.objects.all()
-    context = {'season': season, 'land':land, 'plant':plant}
-    return render(request, "Manage/manage.html", context)
-
 def m_form(request):
     if request.method == 'POST':
         # Get form data and perform validation (improved)
@@ -255,15 +275,13 @@ def m_form(request):
     else:
         return render(request, "Manage/m_form.html")
 
-
-
-
 def infor(request):
     if request.method == 'GET':
         season_id = request.GET.get('id')
 
 
 
+# MARKET 
 def maker(request):
     thitruong_list= thitruong.objects.filter()
     return render(request, 'Manage/maker.html', {'thitruong_list':thitruong_list})
@@ -287,23 +305,20 @@ def maker_sell(request):
         return render(request, 'Manage/maker_sell.html')
 
 
+# CONTACT 
 def contact(request):
         if request.method == 'POST':  # Kiểm tra xem request là phương thức POST hay không
             # Lấy dữ liệu người dùng nhập từ form
+            user = request.user
             hoten = request.POST.get('hoten')
             email = request.POST.get('email')
             loinhan = request.POST.get('loinhan')
             # Tạo một bản ghi mới trong bảng Contact
-            lienhe = Contact.objects.create(
-                hoten=hoten, email=email, loinhan=loinhan)
+            lienhe = Contact.objects.create(user=user, hoten=hoten, email=email, loinhan=loinhan)
+            lienhe.save()
             # Lưu lại thông báo thành công
-            context = {"message": "Phản hồi của bạn đã được gửi!"}
-            return render(request, 'Manage/contact.html', context)
-        else:
-            # Trả về trang contact.html khi request là GET
-            return render(request, 'Manage/contact.html')
+            messages.success(request, "Gửi phản hồi thành công")
+        return render(request, 'Manage/contact.html', {})
     
-    
-
 
 

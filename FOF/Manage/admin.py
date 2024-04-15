@@ -7,7 +7,7 @@ class thitruongAdmin(admin.ModelAdmin):
 
 admin.site.register(thitruong,thitruongAdmin)
 admin.site.register(thitruong_ban)
-
+admin.site.register(Customer)
 admin.site.register(Product)
 admin.site.register(Season)
 admin.site.register(Land)

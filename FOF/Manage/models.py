@@ -36,7 +36,7 @@ class Plant(models.Model):
         ('1', 'Cây ăn quả'),
         ('2', 'Cây rau củ'),
     ])
-    plant_ND = models.DecimalField(max_digits=5, decimal_places=2, help_text="Nồng độ khoáng chất cần thiết")
+    plant_ND = models.CharField(max_length=200,help_text="Nồng độ khoáng chất cần thiết")
     plant_bp = models.IntegerField(help_text="Chu kỳ bón phân (ngày)")
     land = models.ForeignKey(Land, on_delete=models.CASCADE)
 
@@ -45,15 +45,16 @@ class Plant(models.Model):
     
     
 class Customer(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, blank=False)
     name = models.CharField(max_length=200, null=True)
-    ngaysinh = models.DateField(auto_now=False, auto_now_add=False)
-    doituong = models.BooleanField()
-    sdt = models.CharField(max_length=20)
-    diachi = models.CharField(max_length=150)
-    email = models.EmailField(max_length=254)
+    email = models.CharField(max_length=200, null=True)
+    birthday= models.CharField(max_length=50, null=True)
+    type_user = models.CharField(max_length=50, null=True)
+    phonenum = models.CharField(max_length=50, null=True)
+    address = models.CharField(max_length=250, null=True)
     def __str__(self):
-        return self.name
+        return self.name if self.name else ''
+
 
 class Product(models.Model):
     name = models.CharField(max_length=200, null=True, blank=False)
@@ -73,8 +74,6 @@ class Product(models.Model):
             url = ''
         return url
     
-
-
     # Create your models here.
 class thitruong (models.Model):
     id_thitruong= models.AutoField(primary_key= True)
@@ -95,15 +94,9 @@ class thitruong_ban (models.Model):
 
 
 class Contact(models.Model):
-    id_user = models.AutoField(primary_key=True, blank=False)
     hoten = models.CharField(max_length=255)
-    email = models.EmailField()
+    email = models.CharField(max_length=250)
     loinhan = models.TextField()
-
-    def __int__(self):
-        return self.id_user
-
-
-
-
-
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.hoten

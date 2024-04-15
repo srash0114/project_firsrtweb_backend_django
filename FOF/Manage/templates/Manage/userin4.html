@@ -1,49 +1,63 @@
-{%extends 'Manage/base.html'%}
-{%load static%}
+{% extends 'Manage/base.html' %}
+{% load static %}
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'Manage/CSS/userin4.css' %}">
 {% endblock head %}
 
 {% block form %}
+    {% if user.is_authenticated %}
     <div class="infor container section">
         <h2>Nhập thông tin người dùng</h2>
-        <form action="#" method="post">
-
-            <div class="row">
-                <div class="col-5">
-                    <label for="hoTen">Họ và tên:</label><br>
-                    <input type="text" id="hoTen" name="hoTen"><br><br>
+        <form method="POST">
+            {% csrf_token %}
+            {% if request.method == "POST" %}
+                {% include 'Manage/userin4.html' %}
+            {% else %}
+                <div class="row">
+                    <div class="col-4">
+                        <label for="name">Họ và tên:</label><br>
+                        <input type="text" id="name" name="name" required><br><br>
+                    </div>
+                    <div class="col-4">
+                        <label for="birth">Ngày sinh:</label><br>
+                        <input type="date" id="birth" name="birth" required><br><br>
+                    </div>
+                    <div class="col-4">
+                        <label for="type">Đối tượng:</label><br>
+                        <select id="type" name="type">
+                            <option value="0">Nông dân</option>
+                            <option value="1">Thương lái</option>
+                        </select><br><br>
+                    </div>
                 </div>
-                <div class="col-5">
-                    <label for="ngaySinh">Ngày sinh:</label><br>
-                    <input type="date" id="ngaySinh" name="ngaySinh"><br><br>
+               
+                <div class="row">
+                    <div class="col-5">
+                        <label for="phone">Số điện thoại:</label><br>
+                        <input type="tel" id="phone" name="phone" pattern="[0-9]{10,11}" required><br><br>
+                    </div>
+                    <div class="col-4">
+                        <label for="adr">Địa chỉ:</label><br>
+                        <input type="text" id="adr" name="adr" required><br><br>
+                    </div>
+                    <div class="col-3">
+                        <label for="email">Email:</label><br>
+                        <input type="email" id="email" name="email" required><br><br>
+                    </div>    
                 </div>
-                <div class="col-2">
-                    <label for="doiTuong">Đối tượng:</label><br>
-            <select id="doiTuong" name="doiTuong">
-                <option value="0">Nông dân</option>
-                <option value="1">Thương lái</option>
-            </select><br><br>
-                </div>
-            </div>
-           
-            <div class="row">
-                <div class="col-2">
-                    <label for="soDienThoai">Số điện thoại:</label><br>
-                    <input type="tel" id="soDienThoai" name="soDienThoai" pattern="[0-9]{10,11}"><br><br>
-                </div>
-                <div class="col-5">
-                    <label for="diaChi">Địa chỉ:</label><br>
-                    <input type="text" id="diaChi" name="diaChi"><br><br>
-            
-                </div>
-                <div class="col-5">
-                    <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email"><br><br>
-                </div>    
-            </div>
-            <input type="submit" value="Gửi">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <input type="submit" value="Gửi">
+            {% endif %}
         </form>
     </div>
-	{% endblock form %}  
+    {% else %}
+    <p>Vui lòng đăng nhập!</p>
+    {% endif %}
+{% endblock form %}

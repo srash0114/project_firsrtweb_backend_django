@@ -52,16 +52,12 @@
     border: none;
     transition: all .5s;
   }
-  
   .my-btn:hover {
    background-color: white;
    color: #609966;
    border: 1px solid #609966;
   }
   
-  .my-btn a:hover {
-    color:#609966;
-  }
   /* HEADER  */
   
   .header {
@@ -195,105 +191,7 @@
     font-size: 0.8rem;
   }
 
-  /* FINDING  */
-  .find__row .filter span {
-    font-size: 1.3rem;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-  .filter__item p {
-    color: #5c5e5f;
-    font-size: 1rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-  }
-  .filter__item form input::placeholder, .input-text {
-    color: #5c5e5f;
-    font-size: 1rem;
-    font-weight: bold;
-    padding-left: 1rem;
-  }
-  .filter__item form input, .my-input {
-    border-radius: 5px;
-    background-color: #EFF2F5;
-    border: none;
-    margin: 0.5rem 0;
-  }
-  .my-input:focus {
-    outline: none;
-  }
-  .filter__item form input:last-child {
-   width: 220px;
-   height: 40px;
-   padding: 10px;
-  }
-  .filter__item form label {
-    font-size: 1rem;
-    color: #5c5e5f;
-   
-    margin-left: 0.5rem;
-  }
- 
-  .find__content .find__box h3 {
-    color: black;
-    font-size: 2rem;
-    font-weight: bold;
-    
-    letter-spacing: 2px;
-    transition: all .5s;
-  }
- .find__box h3:hover {
-    color: #609966;
-  }
-  .find__box p {
-    color: #5c5e5f;
-   font-size: 1rem;
-   margin-bottom: 2rem;
-  }
-  .find__box input {
-    width: 50%;
-    height: 40px;
-    margin-right: 3rem;
-  }
-  .find__box {
-    margin-bottom: 2rem;
-  }
-
-  .find__item {
-   
-    background-color: #EFF2F5;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 0rem 0.5rem;
-  }
-  .find__result img {
-    border-radius: 5px;
-    margin-bottom: 0.5rem;
-  }
-  .find__result .name {
-    font-weight: bold;
-    font-size: 1.2rem;
-    
-  }
-  .find__result .prices {
-   margin-bottom: 0.5rem;
-   color: #FF9800;
-   font-weight: bold;
-    
-  }
-  .find__result .find__start {
-    
-    color: #FF9800;
-    margin-bottom: 1rem;
-     
-   }
-   .find__result button {
-    
-    margin-bottom: 0.5rem;
-     
-   }
- 
+  
   
   
   /* FOOTER  */
@@ -372,10 +270,6 @@
       display: block;
       width: 60%;
       margin: 1rem 0;
-    }
-    /* RESULT  */
-    .filter {
-        display: none;
     }
   }
   @media screen and (max-width: 879.9px) {
